@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Brantford Business Website Assessment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f0f4f8; /* Light blue-gray background */
+        display: flex;
+        justify-content: center;
+        align-items: flex-start; /* Align to top for better scrolling on smaller screens */
+        min-height: 100vh;
+        padding: 2rem 1rem; /* Add padding for overall layout */
+      }
+      .assessment-container {
+        background-color: #ffffff;
+        border-radius: 1rem; /* Rounded corners */
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Subtle shadow */
+        max-width: 800px; /* Max width for readability */
+        width: 100%;
+        padding: 2.5rem; /* Ample padding inside */
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+      .option-button {
+        transition: all 0.2s ease-in-out;
+        cursor: pointer;
+        border: 2px solid #e2e8f0; /* Light border */
+      }
+      .option-button:hover {
+        background-color: #e0f2fe; /* Light blue on hover */
+        border-color: #3b82f6; /* Blue border on hover */
+      }
+      .option-button.selected {
+        background-color: #bfdbfe; /* Medium blue when selected */
+        border-color: #2563eb; /* Darker blue border when selected */
+        font-weight: 600;
+        color: #1e40af; /* Darker text for selected */
+      }
+      .progress-bar-container {
+        background-color: #e2e8f0;
+        border-radius: 9999px; /* Fully rounded */
+        height: 0.75rem; /* Height of the bar */
+        overflow: hidden;
+      }
+      .progress-bar {
+        background-color: #3b82f6; /* Blue progress */
+        height: 100%;
+        width: 0%; /* Initial width */
+        border-radius: 9999px;
+        transition: width 0.3s ease-in-out;
+      }
+      .message-box {
+        background-color: #ecfdf5; /* Light green background */
+        border: 1px solid #a7f3d0; /* Green border */
+        color: #065f46; /* Dark green text */
+        padding: 1rem;
+        border-radius: 0.5rem;
+        margin-top: 1rem;
+        text-align: center;
+        font-weight: 500;
+      }
+      .recommendation-card {
+        background-color: #f8fafc; /* Very light gray */
+        border: 1px solid #e2e8f0;
+        border-radius: 0.75rem;
+        padding: 1.5rem;
+        margin-top: 1.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+      }
+      .recommendation-card h3 {
+        color: #1d4ed8; /* Dark blue title */
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 0.75rem;
+      }
+      .recommendation-card p {
+        color: #4b5563; /* Gray text */
+        line-height: 1.6;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="assessment-container">
+      <h1 class="text-3xl font-bold text-center text-gray-800 mb-4">
+        Your Brantford Business Website Assessment
+      </h1>
+      <p class="text-center text-gray-600 mb-6" id="introduction-text"></p>
+
+      <div class="progress-bar-container mb-6">
+        <div id="progressBar" class="progress-bar"></div>
+      </div>
+
+      <div id="question-area" class="hidden">
+        <p
+          class="text-lg font-semibold text-gray-700 mb-4"
+          id="question-text"
+        ></p>
+        <div id="options-container" class="flex flex-col gap-3"></div>
+        <div class="flex justify-between mt-6">
+          <button
+            id="prev-button"
+            class="px-6 py-3 bg-gray-200 text-gray-700 font-semibold rounded-lg hover:bg-gray-300 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-400 focus:ring-opacity-75"
+            disabled
+          >
+            Previous
+          </button>
+          <button
+            id="next-button"
+            class="px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75"
+          >
+            Next
+          </button>
+          <button
+            id="submit-button"
+            class="px-6 py-3 bg-green-600 text-white font-semibold rounded-lg hover:bg-green-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-opacity-75 hidden"
+          >
+            Get Recommendation
+          </button>
+        </div>
+      </div>
+
+      <div
+        id="email-capture-area"
+        class="hidden mt-8 p-6 bg-blue-50 rounded-lg shadow-inner"
+      >
+        <h2 class="text-xl font-bold text-blue-800 mb-4 text-center">
+          Get Your Personalized Recommendation!
+        </h2>
+        <p class="text-gray-700 mb-4 text-center">
+          Enter your email to receive your full assessment results and tailored
+          insights for your Brantford business.
+        </p>
+        <input
+          type="email"
+          id="user-email"
+          placeholder="Your Email Address"
+          class="w-full p-3 border border-blue-300 rounded-lg focus:ring-blue-500 focus:border-blue-500 mb-4"
+        />
+        <button
+          id="email-submit-button"
+          class="w-full px-6 py-3 bg-blue-600 text-white font-semibold rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-75"
+        >
+          Submit & Get Results
+        </button>
+        <div id="email-message-box" class="message-box hidden"></div>
+      </div>
+
+      <div id="recommendation-area" class="hidden mt-8">
+        <h2 class="text-2xl font-bold text-center text-gray-800 mb-6">
+          Your Personalized Recommendation
+        </h2>
+        <div id="recommendation-card" class="recommendation-card">
+          <h3 id="recommendation-title"></h3>
+          <p id="recommendation-description"></p>
+        </div>
+        <div class="flex justify-center mt-6">
+          <button
+            id="copy-results-button"
+            class="px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg hover:bg-purple-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-opacity-75"
+          >
+            Copy Results
+          </button>
+        </div>
+        <div id="copy-message-box" class="message-box hidden"></div>
+      </div>
+    </div>
+
+    <script>
+      // Assessment data embedded directly from the provided JSON
+      const assessmentData = {
+        introduction:
+          "This assessment will guide you through key considerations for your website and online marketing needs. Your answers will help us provide a personalized recommendation and give us valuable insights into the local market.",
+        questions: [
+          {
+            id: "q1",
+            text: "What best describes your current website situation?",
+            options: [
+              {
+                id: "q1o1",
+                text: "I don't have a website yet, and I'm ready to build one.",
+                scores: {
+                  engage_web_developer: 3,
+                  commission_static_website: 2,
+                },
+              },
+              {
+                id: "q1o2",
+                text: "I have a simple, informational website that rarely needs updates.",
+                scores: { commission_static_website: 3 },
+              },
+              {
+                id: "q1o3",
+                text: "I have a complex, dynamic website (e.g., e-commerce, active blog) that I actively manage.",
+                scores: { continue_current_solution: 3 },
+              },
+              {
+                id: "q1o4",
+                text: "I have a complex, dynamic website, but it's not well-managed or updated consistently.",
+                scores: {
+                  commission_content_manager: 3,
+                  engage_web_developer: 1,
+                },
+              },
+            ],
+          },
+          {
+            id: "q2",
+            text: "How often do you anticipate needing to update your website's main content (e.g., adding new services, changing prices, writing blog posts)?",
+            options: [
+              {
+                id: "q2o1",
+                text: "Daily or multiple times a week.",
+                scores: {
+                  continue_current_solution: 2,
+                  commission_content_manager: 1,
+                },
+              },
+              {
+                id: "q2o2",
+                text: "Monthly or quarterly.",
+                scores: {
+                  commission_content_manager: 2,
+                  engage_web_developer: 1,
+                },
+              },
+              {
+                id: "q2o3",
+                text: "Rarely (e.g., yearly or less).",
+                scores: { commission_static_website: 3 },
+              },
+            ],
+          },
+          {
+            id: "q3",
+            text: "What is the primary business goal of your website?",
+            options: [
+              {
+                id: "q3o1",
+                text: "To serve as a digital brochure or portfolio showcasing my services/products.",
+                scores: { commission_static_website: 3 },
+              },
+              {
+                id: "q3o2",
+                text: "To generate leads through contact forms, inquiries, or sign-ups.",
+                scores: { commission_static_website: 2 },
+              },
+              {
+                id: "q3o3",
+                text: "To facilitate e-commerce sales, online booking, or membership management.",
+                scores: {
+                  engage_web_developer: 2,
+                  continue_current_solution: 1,
+                },
+              },
+              {
+                id: "q3o4",
+                text: "To host an active blog, news hub, or community forum with dynamic content.",
+                scores: {
+                  continue_current_solution: 2,
+                  commission_content_manager: 1,
+                },
+              },
+              {
+                id: "q3o5",
+                text: "To offer complex user interactions, custom database integrations, or personalized content.",
+                scores: { engage_web_developer: 3 },
+              },
+            ],
+          },
+          {
+            id: "q4",
+            text: "Who primarily handles your website's content management, and what are your biggest challenges?",
+            options: [
+              {
+                id: "q4o1",
+                text: "Me or my team; we're comfortable and manage updates frequently.",
+                scores: { continue_current_solution: 3 },
+              },
+              {
+                id: "q4o2",
+                text: "Me or my team; but we struggle with consistency, finding the time, or knowing what to post.",
+                scores: { commission_content_manager: 3 },
+              },
+              {
+                id: "q4o3",
+                text: "My web developer; they handle all changes as needed.",
+                scores: {
+                  engage_web_developer: 2,
+                  commission_static_website: 1,
+                },
+              },
+              {
+                id: "q4o4",
+                text: "No one; the content rarely changes, so it's not a focus.",
+                scores: { commission_static_website: 3 },
+              },
+            ],
+          },
+          {
+            id: "q5",
+            text: "How do you feel about your current website's recurring costs (e.g., hosting, platform fees) versus the value you receive?",
+            options: [
+              {
+                id: "q5o1",
+                text: "Very satisfied; we fully utilize our current platform and its features, making the costs worthwhile.",
+                scores: { continue_current_solution: 3 },
+              },
+              {
+                id: "q5o2",
+                text: "Somewhat satisfied; we use some features, but feel we might be overpaying for unused capabilities.",
+                scores: {
+                  commission_static_website: 2,
+                  commission_content_manager: 1,
+                },
+              },
+              {
+                id: "q5o3",
+                text: "Not satisfied; we rarely log in or make updates, and it feels like 'rent' for an underutilized asset.",
+                scores: { commission_static_website: 3 },
+              },
+              {
+                id: "q5o4",
+                text: "I don't have a website or am unsure of current costs, and I'm looking for the most efficient long-term solution.",
+                scores: {
+                  engage_web_developer: 2,
+                  commission_static_website: 1,
+                },
+              },
+            ],
+          },
+        ],
+        recommendation_logic_summary:
+          "After you answer all the questions, your responses will be analyzed to identify patterns in your needs and preferences. Based on the cumulative insights from your answers, we'll provide a recommendation that best aligns with your business's online objectives and operational style. For example, if your answers frequently indicate simple informational needs and infrequent updates, a static website might be recommended. If you highlight complex functionalities or a need for custom solutions, engaging a web developer will likely be suggested. If you're using a dynamic platform but struggling with content, a content manager could be your ideal solution. If your current setup perfectly matches your active needs, continuing with your current solution might be the best path.",
+        recommendations: {
+          engage_web_developer: {
+            title: "Engage a Web Developer",
+            description:
+              "Your assessment suggests your business needs a tailored online solution, custom functionalities, or a strategic partner to guide your digital growth. A web developer can build bespoke features, integrate complex systems, or provide expert guidance on the most suitable technology for your unique requirements, especially if you're starting fresh or need significant upgrades.",
+          },
+          continue_current_solution: {
+            title: "Continue Using Your Current Web Solution",
+            description:
+              "Based on your responses, your current website setup appears to be effectively serving your business's dynamic needs. You're actively utilizing its features and are satisfied with the value it provides, indicating that your existing solution is a good fit for your ongoing online marketing and website development requirements.",
+          },
+          commission_static_website: {
+            title: "Commission a Static Website",
+            description:
+              "Your assessment points to a need for an efficient, secure, and cost-effective online presence primarily for displaying information or generating leads with infrequent content updates. A static website is ideal for businesses that don't need complex, dynamic features, offering superior performance, enhanced security, and significantly lower recurring costs compared to traditional CMS platforms.",
+          },
+          commission_content_manager: {
+            title: "Commission a Content Manager",
+            description:
+              "Your responses indicate you have a website (likely a CMS) with features that could be valuable, but you're struggling with the consistency, time, or expertise needed to keep its content fresh and engaging. A content manager can help you maximize your existing platform's potential by planning, creating, and updating content regularly, ensuring your online presence remains dynamic and relevant without requiring major website overhauls.",
+          },
+        },
+      };
+
+      // DOM Elements
+      const introductionText = document.getElementById("introduction-text");
+      const questionArea = document.getElementById("question-area");
+      const questionText = document.getElementById("question-text");
+      const optionsContainer = document.getElementById("options-container");
+      const prevButton = document.getElementById("prev-button");
+      const nextButton = document.getElementById("next-button");
+      const submitButton = document.getElementById("submit-button");
+      const emailCaptureArea = document.getElementById("email-capture-area");
+      const userEmailInput = document.getElementById("user-email");
+      const emailSubmitButton = document.getElementById("email-submit-button");
+      const emailMessageBox = document.getElementById("email-message-box");
+      const recommendationArea = document.getElementById("recommendation-area");
+      const recommendationTitle = document.getElementById(
+        "recommendation-title"
+      );
+      const recommendationDescription = document.getElementById(
+        "recommendation-description"
+      );
+      const progressBar = document.getElementById("progressBar");
+      const copyResultsButton = document.getElementById("copy-results-button");
+      const copyMessageBox = document.getElementById("copy-message-box");
+
+      // Assessment State
+      let currentQuestionIndex = 0;
+      // Stores selected option ID for each question
+      let userAnswers = {};
+      // Stores cumulative scores for each recommendation type
+      let recommendationScores = {
+        engage_web_developer: 0,
+        continue_current_solution: 0,
+        commission_static_website: 0,
+        commission_content_manager: 0,
+      };
+
+      // --- Functions ---
+
+      /**
+       * Displays a temporary message in a designated message box.
+       * @param {HTMLElement} boxElement - The message box element.
+       * @param {string} message - The message to display.
+       * @param {string} type - 'success' or 'error' to apply specific styling.
+       */
+      function showMessageBox(boxElement, message, type = "success") {
+        boxElement.textContent = message;
+        boxElement.classList.remove(
+          "hidden",
+          "bg-red-100",
+          "border-red-400",
+          "text-red-700",
+          "bg-green-100",
+          "border-green-400",
+          "text-green-700"
+        );
+        if (type === "error") {
+          boxElement.classList.add(
+            "bg-red-100",
+            "border-red-400",
+            "text-red-700"
+          );
+        } else {
+          boxElement.classList.add(
+            "bg-green-100",
+            "border-green-400",
+            "text-green-700"
+          );
+        }
+        boxElement.classList.remove("hidden");
+        setTimeout(() => {
+          boxElement.classList.add("hidden");
+        }, 3000); // Hide after 3 seconds
+      }
+
+      /**
+       * Renders the current question and its options.
+       */
+      function renderQuestion() {
+        // Hide recommendation and email areas
+        recommendationArea.classList.add("hidden");
+        emailCaptureArea.classList.add("hidden");
+        questionArea.classList.remove("hidden");
+
+        const question = assessmentData.questions[currentQuestionIndex];
+        questionText.textContent = question.text;
+        optionsContainer.innerHTML = ""; // Clear previous options
+
+        question.options.forEach((option) => {
+          const button = document.createElement("button");
+          button.textContent = option.text;
+          button.className =
+            "option-button w-full px-5 py-3 text-left bg-gray-50 text-gray-800 rounded-lg shadow-sm hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50";
+          button.dataset.optionId = option.id;
+
+          // Mark as selected if previously answered
+          if (userAnswers[question.id] === option.id) {
+            button.classList.add("selected");
+          }
+
+          button.addEventListener("click", () =>
+            selectOption(question.id, option.id, option.scores)
+          );
+          optionsContainer.appendChild(button);
+        });
+
+        updateNavigationButtons();
+        updateProgressBar();
+      }
+
+      /**
+       * Updates the progress bar based on the current question index.
+       */
+      function updateProgressBar() {
+        const progress =
+          ((currentQuestionIndex + 1) / assessmentData.questions.length) * 100;
+        progressBar.style.width = `${progress}%`;
+      }
+
+      /**
+       * Handles option selection, updates user answers, and potentially enables next button.
+       * @param {string} questionId - ID of the question.
+       * @param {string} optionId - ID of the selected option.
+       * @param {object} scores - Scores associated with the selected option.
+       */
+      function selectOption(questionId, optionId, scores) {
+        userAnswers[questionId] = optionId;
+
+        // Remove 'selected' class from all options for the current question
+        optionsContainer.querySelectorAll(".option-button").forEach((btn) => {
+          btn.classList.remove("selected");
+        });
+        // Add 'selected' class to the clicked option
+        event.target.classList.add("selected");
+
+        // Enable next button if an option is selected
+        if (currentQuestionIndex < assessmentData.questions.length - 1) {
+          nextButton.disabled = false;
+        } else {
+          submitButton.disabled = false;
+        }
+      }
+
+      /**
+       * Updates the visibility and enabled state of navigation buttons.
+       */
+      function updateNavigationButtons() {
+        prevButton.disabled = currentQuestionIndex === 0;
+        nextButton.classList.toggle(
+          "hidden",
+          currentQuestionIndex === assessmentData.questions.length - 1
+        );
+        submitButton.classList.toggle(
+          "hidden",
+          currentQuestionIndex < assessmentData.questions.length - 1
+        );
+
+        // Disable next/submit if current question hasn't been answered yet
+        const currentQuestionId =
+          assessmentData.questions[currentQuestionIndex].id;
+        const hasAnsweredCurrentQuestion =
+          userAnswers.hasOwnProperty(currentQuestionId);
+        nextButton.disabled = !hasAnsweredCurrentQuestion;
+        submitButton.disabled = !hasAnsweredCurrentQuestion;
+      }
+
+      /**
+       * Calculates the final recommendation based on accumulated scores.
+       * @returns {object} The recommended service (title and description).
+       */
+      function calculateRecommendation() {
+        // Reset scores before recalculating
+        recommendationScores = {
+          engage_web_developer: 0,
+          continue_current_solution: 0,
+          commission_static_website: 0,
+          commission_content_manager: 0,
+        };
+
+        // Accumulate scores from all answered questions
+        assessmentData.questions.forEach((question) => {
+          const selectedOptionId = userAnswers[question.id];
+          if (selectedOptionId) {
+            const selectedOption = question.options.find(
+              (opt) => opt.id === selectedOptionId
+            );
+            if (selectedOption && selectedOption.scores) {
+              for (const recType in selectedOption.scores) {
+                if (recommendationScores.hasOwnProperty(recType)) {
+                  recommendationScores[recType] +=
+                    selectedOption.scores[recType];
+                }
+              }
+            }
+          }
+        });
+
+        // Determine the recommendation with the highest score
+        let bestRecommendationKey = null;
+        let maxScore = -1;
+
+        for (const recType in recommendationScores) {
+          if (recommendationScores[recType] > maxScore) {
+            maxScore = recommendationScores[recType];
+            bestRecommendationKey = recType;
+          }
+        }
+
+        // Fallback if no specific recommendation is clearly highest (e.g., all zeros or ties)
+        if (bestRecommendationKey === null) {
+          // Default to 'engage_web_developer' or a general advice if no clear winner
+          return assessmentData.recommendations.engage_web_developer;
+        }
+
+        return assessmentData.recommendations[bestRecommendationKey];
+      }
+
+      /**
+       * Displays the final recommendation to the user.
+       */
+      function displayRecommendation() {
+        questionArea.classList.add("hidden");
+        emailCaptureArea.classList.add("hidden"); // Ensure email area is hidden
+        recommendationArea.classList.remove("hidden");
+
+        const finalRecommendation = calculateRecommendation();
+        recommendationTitle.textContent = finalRecommendation.title;
+        recommendationDescription.textContent = finalRecommendation.description;
+      }
+
+      // --- Event Listeners ---
+
+      prevButton.addEventListener("click", () => {
+        if (currentQuestionIndex > 0) {
+          currentQuestionIndex--;
+          renderQuestion();
+        }
+      });
+
+      nextButton.addEventListener("click", () => {
+        const currentQuestionId =
+          assessmentData.questions[currentQuestionIndex].id;
+        if (userAnswers.hasOwnProperty(currentQuestionId)) {
+          // Ensure current question is answered
+          if (currentQuestionIndex < assessmentData.questions.length - 1) {
+            currentQuestionIndex++;
+            renderQuestion();
+          }
+        } else {
+          showMessageBox(
+            emailMessageBox,
+            "Please select an option before proceeding.",
+            "error"
+          );
+        }
+      });
+
+      submitButton.addEventListener("click", () => {
+        const currentQuestionId =
+          assessmentData.questions[currentQuestionIndex].id;
+        if (userAnswers.hasOwnProperty(currentQuestionId)) {
+          // Ensure last question is answered
+          questionArea.classList.add("hidden");
+          emailCaptureArea.classList.remove("hidden"); // Show email capture
+        } else {
+          showMessageBox(
+            emailMessageBox,
+            "Please select an option before getting your recommendation.",
+            "error"
+          );
+        }
+      });
+
+      emailSubmitButton.addEventListener("click", () => {
+        const userEmail = userEmailInput.value.trim();
+        if (userEmail && userEmail.includes("@") && userEmail.includes(".")) {
+          // In a real deployment, you would send userEmail and userAnswers to your backend here.
+          // For this front-end only example, we'll just log it and then display the recommendation.
+          console.log("User Email:", userEmail);
+          console.log("User Answers:", userAnswers);
+          console.log("Calculated Scores:", recommendationScores);
+
+          showMessageBox(
+            emailMessageBox,
+            "Thank you! Your recommendation is ready.",
+            "success"
+          );
+          setTimeout(displayRecommendation, 1000); // Wait a bit before showing recommendation
+        } else {
+          showMessageBox(
+            emailMessageBox,
+            "Please enter a valid email address.",
+            "error"
+          );
+        }
+      });
+
+      copyResultsButton.addEventListener("click", () => {
+        const finalRecommendation = calculateRecommendation();
+        const resultsText = `
+Your Brantford Business Website Assessment Results:
+
+Your Email: ${userEmailInput.value || "Not provided"}
+
+---
+Your Personalized Recommendation:
+Title: ${finalRecommendation.title}
+Description: ${finalRecommendation.description}
+---
+
+Your Answers:
+${assessmentData.questions
+  .map((q) => {
+    const selectedOptionId = userAnswers[q.id];
+    const selectedOption = q.options.find((opt) => opt.id === selectedOptionId);
+    return `- ${q.text}\n  Selected: ${
+      selectedOption ? selectedOption.text : "N/A"
+    }`;
+  })
+  .join("\n")}
+
+---
+Internal Score Breakdown (for market research):
+${Object.entries(recommendationScores)
+  .map(
+    ([key, value]) =>
+      `- ${key
+        .replace(/_/g, " ")
+        .replace(/\b\w/g, (l) => l.toUpperCase())}: ${value}`
+  )
+  .join("\n")}
+            `;
+
+        // Use document.execCommand('copy') for broader compatibility in iframes
+        const tempTextArea = document.createElement("textarea");
+        tempTextArea.value = resultsText;
+        document.body.appendChild(tempTextArea);
+        tempTextArea.select();
+        try {
+          document.execCommand("copy");
+          showMessageBox(
+            copyMessageBox,
+            "Results copied to clipboard!",
+            "success"
+          );
+        } catch (err) {
+          showMessageBox(
+            copyMessageBox,
+            "Failed to copy results. Please copy manually.",
+            "error"
+          );
+          console.error("Failed to copy text: ", err);
+        } finally {
+          document.body.removeChild(tempTextArea);
+        }
+      });
+
+      // --- Initialization ---
+      document.addEventListener("DOMContentLoaded", () => {
+        introductionText.textContent = assessmentData.introduction;
+        renderQuestion(); // Start with the first question
+      });
+    </script>
+  </body>
+</html>
