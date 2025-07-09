@@ -1,0 +1,154 @@
+{
+  "introduction": "This assessment will guide you through key considerations for your website and online marketing needs. Your answers will help us provide a personalized recommendation and give us valuable insights into the local market.",
+  "questions": [
+    {
+      "id": "q1",
+      "text": "What best describes your current website situation?",
+      "options": [
+        {
+          "id": "q1o1",
+          "text": "I don't have a website yet, and I'm ready to build one.",
+          "scores": { "engage_web_developer": 3, "commission_static_website": 2 }
+        },
+        {
+          "id": "q1o2",
+          "text": "I have a simple, informational website that rarely needs updates.",
+          "scores": { "commission_static_website": 3 }
+        },
+        {
+          "id": "q1o3",
+          "text": "I have a complex, dynamic website (e.g., e-commerce, active blog) that I actively manage.",
+          "scores": { "continue_current_solution": 3 }
+        },
+        {
+          "id": "q1o4",
+          "text": "I have a complex, dynamic website, but it's not well-managed or updated consistently.",
+          "scores": { "commission_content_manager": 3, "engage_web_developer": 1 }
+        }
+      ]
+    },
+    {
+      "id": "q2",
+      "text": "How often do you anticipate needing to update your website's main content (e.g., adding new services, changing prices, writing blog posts)?",
+      "options": [
+        {
+          "id": "q2o1",
+          "text": "Daily or multiple times a week.",
+          "scores": { "continue_current_solution": 2, "commission_content_manager": 1 }
+        },
+        {
+          "id": "q2o2",
+          "text": "Monthly or quarterly.",
+          "scores": { "commission_content_manager": 2, "engage_web_developer": 1 }
+        },
+        {
+          "id": "q2o3",
+          "text": "Rarely (e.g., yearly or less).",
+          "scores": { "commission_static_website": 3 }
+        }
+      ]
+    },
+    {
+      "id": "q3",
+      "text": "What is the primary business goal of your website?",
+      "options": [
+        {
+          "id": "q3o1",
+          "text": "To serve as a digital brochure or portfolio showcasing my services/products.",
+          "scores": { "commission_static_website": 3 }
+        },
+        {
+          "id": "q3o2",
+          "text": "To generate leads through contact forms, inquiries, or sign-ups.",
+          "scores": { "commission_static_website": 2 }
+        },
+        {
+          "id": "q3o3",
+          "text": "To facilitate e-commerce sales, online booking, or membership management.",
+          "scores": { "engage_web_developer": 2, "continue_current_solution": 1 }
+        },
+        {
+          "id": "q3o4",
+          "text": "To host an active blog, news hub, or community forum with dynamic content.",
+          "scores": { "continue_current_solution": 2, "commission_content_manager": 1 }
+        },
+        {
+          "id": "q3o5",
+          "text": "To offer complex user interactions, custom database integrations, or personalized content.",
+          "scores": { "engage_web_developer": 3 }
+        }
+      ]
+    },
+    {
+      "id": "q4",
+      "text": "Who primarily handles your website's content management, and what are your biggest challenges?",
+      "options": [
+        {
+          "id": "q4o1",
+          "text": "Me or my team; we're comfortable and manage updates frequently.",
+          "scores": { "continue_current_solution": 3 }
+        },
+        {
+          "id": "q4o2",
+          "text": "Me or my team; but we struggle with consistency, finding the time, or knowing what to post.",
+          "scores": { "commission_content_manager": 3 }
+        },
+        {
+          "id": "q4o3",
+          "text": "My web developer; they handle all changes as needed.",
+          "scores": { "engage_web_developer": 2, "commission_static_website": 1 }
+        },
+        {
+          "id": "q4o4",
+          "text": "No one; the content rarely changes, so it's not a focus.",
+          "scores": { "commission_static_website": 3 }
+        }
+      ]
+    },
+    {
+      "id": "q5",
+      "text": "How do you feel about your current website's recurring costs (e.g., hosting, platform fees) versus the value you receive?",
+      "options": [
+        {
+          "id": "q5o1",
+          "text": "Very satisfied; we fully utilize our current platform and its features, making the costs worthwhile.",
+          "scores": { "continue_current_solution": 3 }
+        },
+        {
+          "id": "q5o2",
+          "text": "Somewhat satisfied; we use some features, but feel we might be overpaying for unused capabilities.",
+          "scores": { "commission_static_website": 2, "commission_content_manager": 1 }
+        },
+        {
+          "id": "q5o3",
+          "text": "Not satisfied; we rarely log in or make updates, and it feels like 'rent' for an underutilized asset.",
+          "scores": { "commission_static_website": 3 }
+        },
+        {
+          "id": "q5o4",
+          "text": "I don't have a website or am unsure of current costs, and I'm looking for the most efficient long-term solution.",
+          "scores": { "engage_web_developer": 2, "commission_static_website": 1 }
+        }
+      ]
+    }
+  ],
+  "recommendation_logic_summary": "After you answer all the questions, your responses will be analyzed to identify patterns in your needs and preferences. Based on the cumulative insights from your answers, we'll provide a recommendation that best aligns with your business's online objectives and operational style. For example, if your answers frequently indicate simple informational needs and infrequent updates, a static website might be recommended. If you highlight complex functionalities or a need for custom solutions, engaging a web developer will likely be suggested. If you're using a dynamic platform but struggling with content, a content manager could be your ideal solution. If your current setup perfectly matches your active needs, continuing with your current solution might be the best path.",
+  "recommendations": {
+    "engage_web_developer": {
+      "title": "Engage a Web Developer",
+      "description": "Your assessment suggests your business needs a tailored online solution, custom functionalities, or a strategic partner to guide your digital growth. A web developer can build bespoke features, integrate complex systems, or provide expert guidance on the most suitable technology for your unique requirements, especially if you're starting fresh or need significant upgrades."
+    },
+    "continue_current_solution": {
+      "title": "Continue Using Your Current Web Solution",
+      "description": "Based on your responses, your current website setup appears to be effectively serving your business's dynamic needs. You're actively utilizing its features and are satisfied with the value it provides, indicating that your existing solution is a good fit for your ongoing online marketing and website development requirements."
+    },
+    "commission_static_website": {
+      "title": "Commission a Static Website",
+      "description": "Your assessment points to a need for an efficient, secure, and cost-effective online presence primarily for displaying information or generating leads with infrequent content updates. A static website is ideal for businesses that don't need complex, dynamic features, offering superior performance, enhanced security, and significantly lower recurring costs compared to traditional CMS platforms."
+    },
+    "commission_content_manager": {
+      "title": "Commission a Content Manager",
+      "description": "Your responses indicate you have a website (likely a CMS) with features that could be valuable, but you're struggling with the consistency, time, or expertise needed to keep its content fresh and engaging. A content manager can help you maximize your existing platform's potential by planning, creating, and updating content regularly, ensuring your online presence remains dynamic and relevant without requiring major website overhauls."
+    }
+  }
+}
